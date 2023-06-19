@@ -6,3 +6,6 @@ This app was made with:
 
 Required packages in ConsoleApp_PDF:
 - QuestPDF 2023.5.3
+
+Required install the QuestPDF Previewer in cmd (Windows):
+- dotnet tool install QuestPDF.Previewer --global
