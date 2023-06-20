@@ -43,6 +43,7 @@ Document.Create(document =>
 
         });
 
+
         // Content
         page.Content().PaddingVertical(10).Column(col1 =>
         {
@@ -114,6 +115,7 @@ Document.Create(document =>
             col1.Item().AlignRight().Text("Total: $25,000.00").FontSize(12);
 
             // Comments
+            if(1 == 1)
             col1.Item().Background(Colors.Grey.Lighten3).Padding(10).Column(column =>
             {
                 column.Item().Text("Comments").FontSize(14);
@@ -124,5 +126,8 @@ Document.Create(document =>
             // Spacing to col1
             col1.Spacing(10);
         });
+
+
+        //
     });
 }).ShowInPreviewer();
