@@ -46,29 +46,33 @@ Document.Create(document =>
         // Content
         page.Content().PaddingVertical(10).Column(col1 =>
         {
-            col1.Item().Text("Customer Information").Underline().Bold();
-
-            // Name
-            col1.Item().Text(txt =>
+            col1.Item().Column(col2 =>
             {
-                txt.Span("Name: ").SemiBold().FontSize(10);
-                txt.Span("Unknow").FontSize(10);
+                col2.Item().Text("Customer Information").Underline().Bold();
+
+                // Name
+                col2.Item().Text(txt =>
+                {
+                    txt.Span("Name: ").SemiBold().FontSize(10);
+                    txt.Span("Unknow").FontSize(10);
+                });
+
+                // DNI
+                col2.Item().Text(txt =>
+                {
+                    txt.Span("DNI: ").SemiBold().FontSize(10);
+                    txt.Span("00000001").FontSize(10);
+                });
+
+                // Address
+                col2.Item().Text(txt =>
+                {
+                    txt.Span("Address: ").SemiBold().FontSize(10);
+                    txt.Span("Street Unknow 1121").FontSize(10);
+                });                
             });
 
-            // DNI
-            col1.Item().Text(txt =>
-            {
-                txt.Span("DNI: ").SemiBold().FontSize(10);
-                txt.Span("00000001").FontSize(10);
-            });
-
-            // Address
-            col1.Item().Text(txt =>
-            {
-                txt.Span("Address: ").SemiBold().FontSize(10);
-                txt.Span("Street Unknow 1121").FontSize(10);
-            });
-
+            // Line
             col1.Item().LineHorizontal(0.5f);
 
             // Table
@@ -108,6 +112,17 @@ Document.Create(document =>
             
             // Total
             col1.Item().AlignRight().Text("Total: $25,000.00").FontSize(12);
+
+            // Comments
+            col1.Item().Background(Colors.Grey.Lighten3).Padding(10).Column(column =>
+            {
+                column.Item().Text("Comments").FontSize(14);
+                column.Item().Text(Placeholders.LoremIpsum());
+                column.Spacing(5);
+            });
+
+            // Spacing to col1
+            col1.Spacing(10);
         });
     });
 }).ShowInPreviewer();
