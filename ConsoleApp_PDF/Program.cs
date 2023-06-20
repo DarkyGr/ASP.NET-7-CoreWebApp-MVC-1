@@ -43,6 +43,7 @@ Document.Create(document =>
 
         });
 
+        // Content
         page.Content().PaddingVertical(10).Column(col1 =>
         {
             col1.Item().Text("Customer Information").Underline().Bold();
@@ -70,8 +71,10 @@ Document.Create(document =>
 
             col1.Item().LineHorizontal(0.5f);
 
-            col1.Item().Table(table =>
+            // Table
+            col1.Item().PaddingVertical(10).Table(table =>
             {
+                // Table Columns
                 table.ColumnsDefinition(columns =>
                 {
                     columns.RelativeColumn(3);
@@ -80,7 +83,7 @@ Document.Create(document =>
                     columns.RelativeColumn();                    
                 });
 
-                // Table header
+                // Table headers
                 table.Header(header =>
                 {
                     header.Cell().Background("#257272").Padding(2).Text("Product").FontColor("#fff");
@@ -102,6 +105,9 @@ Document.Create(document =>
                     table.Cell().BorderBottom(0.5f).BorderColor("#d9d9d9").Padding(2).Text($"S/.{total}").FontSize(10);
                 }
             });
+            
+            // Total
+            col1.Item().AlignRight().Text("Total: $25,000.00").FontSize(12);
         });
     });
 }).ShowInPreviewer();
