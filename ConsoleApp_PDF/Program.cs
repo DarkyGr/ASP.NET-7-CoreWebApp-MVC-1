@@ -128,6 +128,13 @@ Document.Create(document =>
         });
 
 
-        //
+        // Footer
+        page.Footer().AlignRight().Text(txt =>
+        {
+            txt.Span("Page ").FontSize(10);
+            txt.CurrentPageNumber().FontSize(10);
+            txt.Span(" of ").FontSize(10);
+            txt.TotalPages().FontSize(10);
+        });
     });
 }).ShowInPreviewer();
