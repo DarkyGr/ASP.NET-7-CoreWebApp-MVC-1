@@ -19,7 +19,7 @@ Document.Create(document =>
         page.Margin(30);
 
         // Header
-        page.Header().Row(row =>
+        page.Header().ShowOnce().Row(row =>
         {
             // Logo
             row.ConstantItem(140).Height(60).Placeholder();
@@ -39,9 +39,69 @@ Document.Create(document =>
                 col.Item().Border(1).BorderColor("#257272").AlignCenter().Text("RUC 101010410001");
                 col.Item().Border(1).Background("#257272").AlignCenter().Text("Sell's Report").FontColor("#fff");
                 col.Item().Border(1).BorderColor("#257272").AlignCenter().Text("SR-010001");
-
             });            
 
+        });
+
+        page.Content().PaddingVertical(10).Column(col1 =>
+        {
+            col1.Item().Text("Customer Information").Underline().Bold();
+
+            // Name
+            col1.Item().Text(txt =>
+            {
+                txt.Span("Name: ").SemiBold().FontSize(10);
+                txt.Span("Unknow").FontSize(10);
+            });
+
+            // DNI
+            col1.Item().Text(txt =>
+            {
+                txt.Span("DNI: ").SemiBold().FontSize(10);
+                txt.Span("00000001").FontSize(10);
+            });
+
+            // Address
+            col1.Item().Text(txt =>
+            {
+                txt.Span("Address: ").SemiBold().FontSize(10);
+                txt.Span("Street Unknow 1121").FontSize(10);
+            });
+
+            col1.Item().LineHorizontal(0.5f);
+
+            col1.Item().Table(table =>
+            {
+                table.ColumnsDefinition(columns =>
+                {
+                    columns.RelativeColumn(3);
+                    columns.RelativeColumn();
+                    columns.RelativeColumn();
+                    columns.RelativeColumn();                    
+                });
+
+                // Table header
+                table.Header(header =>
+                {
+                    header.Cell().Background("#257272").Padding(2).Text("Product").FontColor("#fff");
+                    header.Cell().Background("#257272").Padding(2).Text("Unit Price").FontColor("#fff");
+                    header.Cell().Background("#257272").Padding(2).Text("Amount").FontColor("#fff");
+                    header.Cell().Background("#257272").Padding(2).Text("Total").FontColor("#fff");
+                });
+
+                // Values of the table
+                foreach (var item in Enumerable.Range(1, 45))
+                {
+                    var amout = Placeholders.Random.Next(1, 10);
+                    var price = Placeholders.Random.Next(5, 15);
+                    var total = amout * price;
+
+                    table.Cell().BorderBottom(0.5f).BorderColor("#d9d9d9").Padding(2).Text(Placeholders.Label()).FontSize(10);
+                    table.Cell().BorderBottom(0.5f).BorderColor("#d9d9d9").Padding(2).Text(amout.ToString()).FontSize(10);
+                    table.Cell().BorderBottom(0.5f).BorderColor("#d9d9d9").Padding(2).Text($"S/.{price}").FontSize(10);
+                    table.Cell().BorderBottom(0.5f).BorderColor("#d9d9d9").Padding(2).Text($"S/.{total}").FontSize(10);
+                }
+            });
         });
     });
 }).ShowInPreviewer();
